@@ -23,7 +23,8 @@
   },
   "scripts": {
     "dev": "ts-node-dev --files src/server.ts",
+    "pup": "node src/services/scraper.service.js",
     "start": "ts-node src/index.ts",
-    "build": "tsc"
+    "build": "tsc --importHelpers -w"
   }
 }
