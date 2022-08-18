@@ -1,10 +1,7 @@
 import { Request, Response } from "express";
 import { scraper } from "../services";
 
-export const scraperController = async (
-  request: Request,
-  response: Response
-) => {
+export const scraperController = async (_: Request, response: Response) => {
   const laptops = await scraper("laptops");
   const tablets = await scraper("tablets");
 

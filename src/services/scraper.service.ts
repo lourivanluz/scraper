@@ -13,13 +13,13 @@ interface ProductInformation {
 }
 
 export const scraper = async (type: string) => {
-  const browser = await puppeteer.launch({ headless: "chrome" });
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   await page.goto(
     `https://webscraper.io/test-sites/e-commerce/allinone/computers/${type}`
   );
-  //get fist values
-  const response = await page.evaluate(async () => {
+
+  const response = await page.evaluate(() => {
     const getInformation = (element: Element) => {
       const link = element.querySelector("a")?.getAttribute("href");
       const id = link ? link.split("/").pop() : [0];
@@ -64,7 +64,6 @@ export const scraper = async (type: string) => {
   });
 
   const result: Array<ProductInformation> = [];
-  //get second values
   for (let index = 0; index < response.length; index++) {
     const item = response[index];
     await page.goto(`https://webscraper.io/${item.end_point_product}`);
